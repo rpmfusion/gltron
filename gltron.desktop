@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=GLTron
+Comment=A game inspired by the movie TRON
+Exec=gltron
+Icon=gltron.png
+Terminal=false
+Type=Application
+Encoding=UTF-8
+Categories=Application;Game;ArcadeGame;
