@@ -1,6 +1,6 @@
 Name:           gltron
 Version:        0.70
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        A 3D game inspired by the movie TRON
 Group:          Amusements/Games
 License:        GPL
@@ -19,7 +19,7 @@ BuildRequires:  desktop-file-utils
 
 %prep
 %setup -q
-%patch -p0 -b .gcc~
+%patch0 -p0 -b .gcc~
 
 %build
 %configure --disable-warn
@@ -47,6 +47,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*.png
 
 %changelog
+* Sat Sep 27 2008 Hans de Goede <j.w.r.degoede@hhs.nl> 0.70-4
+- Fix rpm %%patch symantics change builderror
+
 * Sun Aug 03 2008 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info - 0.70-3
 - rebuild
 
