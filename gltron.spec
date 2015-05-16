@@ -1,6 +1,6 @@
 Name:           gltron
 Version:        0.70
-Release:        8%{?dist}
+Release:        9%{?dist}
 Summary:        A 3D game inspired by the movie TRON
 Group:          Amusements/Games
 License:        GPL
@@ -9,37 +9,34 @@ Source0:        http://dl.sf.net/gltron/gltron-0.70-source.tar.gz
 Source1:        %{name}.desktop
 Source2:        %{name}.png
 Patch0:         gltron-0.70-gcc.patch
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-
+Patch1:         gltron-0.70-no-use-misc.patch
 BuildRequires:  SDL_sound-devel libpng-devel zlib-devel libGLU-devel
 BuildRequires:  desktop-file-utils
 
 %description
 %{summary}.
 
+
 %prep
 %setup -q
 %patch0 -p0 -b .gcc~
+%patch1 -p1
+
 
 %build
 %configure --disable-warn
 make %{?_smp_mflags}
 
 %install
-rm -rf $RPM_BUILD_ROOT
-make install DESTDIR=$RPM_BUILD_ROOT
+%make_install
 
 mkdir -p $RPM_BUILD_ROOT/%{_datadir}/applications
 mkdir -p $RPM_BUILD_ROOT/%{_datadir}/pixmaps
 install -m 644 %{SOURCE2} $RPM_BUILD_ROOT/%{_datadir}/pixmaps
-desktop-file-install --dir $RPM_BUILD_ROOT/%{_datadir}/applications \
-    --vendor livna --mode=0644 --add-category=X-Livna %{SOURCE1}
+desktop-file-install --dir $RPM_BUILD_ROOT/%{_datadir}/applications %{SOURCE1}
 
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 %files
-%defattr(-,root,root,-)
 %doc COPYING ChangeLog README 
 %{_bindir}/*
 %{_datadir}/%{name}
@@ -47,6 +44,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*.png
 
 %changelog
+* Sat May 16 2015 Hans de Goede <j.w.r.degoede@gmail.com> - 0.70-9
+- Fix FTBFS (rf#3631)
+
 * Sun Aug 31 2014 Sérgio Basto <sergio@serjux.com> - 0.70-8
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_22_Mass_Rebuild
 
