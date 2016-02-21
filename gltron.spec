@@ -1,17 +1,30 @@
 Name:           gltron
 Version:        0.70
-Release:        9%{?dist}
+Release:        10%{?dist}
 Summary:        A 3D game inspired by the movie TRON
 Group:          Amusements/Games
-License:        GPL
+License:        GPLv2
 URL:            http://gltron.org
-Source0:        http://dl.sf.net/gltron/gltron-0.70-source.tar.gz
+Source0:        http://download.sf.net/gltron/gltron-0.70-source.tar.gz
 Source1:        %{name}.desktop
 Source2:        %{name}.png
 Patch0:         gltron-0.70-gcc.patch
 Patch1:         gltron-0.70-no-use-misc.patch
+
+#Debian patches, from gltron-0.70final/debian/patches/series
+Patch20: amd64-ai.patch
+Patch21: amd64-gcc40.patch
+Patch22: cflags.patch
+Patch23: disable-screenmenu.patch
+Patch24: gcc-4.6.patch
+Patch25: fix-clang-build.patch
+Patch26: automake-error.patch
+Patch27: gcc5.diff
+
 BuildRequires:  SDL_sound-devel libpng-devel zlib-devel libGLU-devel
+BuildRequires:  libvorbis-devel
 BuildRequires:  desktop-file-utils
+BuildRequires:  autoconf automake
 
 %description
 %{summary}.
@@ -21,9 +34,24 @@ BuildRequires:  desktop-file-utils
 %setup -q
 %patch0 -p0 -b .gcc~
 %patch1 -p1
+%patch20 -p1
+%patch21 -p1
+%patch22 -p1
+%patch23 -p1
+%patch24 -p1
+%patch25 -p1
+%patch26 -p1
+%patch27 -p1
+
+# remove generated files
+rm aclocal.m4 config.guess config.sub configure depcomp install-sh missing \
+mkinstalldirs Makefile.in
+
+mv configure.in configure.ac
 
 
 %build
+autoreconf -iv
 %configure --disable-warn
 make %{?_smp_mflags}
 
@@ -37,13 +65,22 @@ desktop-file-install --dir $RPM_BUILD_ROOT/%{_datadir}/applications %{SOURCE1}
 
 
 %files
-%doc COPYING ChangeLog README 
+%doc ChangeLog README
+%license COPYING
 %{_bindir}/*
 %{_datadir}/%{name}
 %{_datadir}/applications/*.desktop
 %{_datadir}/pixmaps/*.png
 
 %changelog
+* Sun Feb 21 2016 Sérgio Basto <sergio@serjux.com> - 0.70-10
+- Fix for rfbz #3926, copying some patches from Debian.
+- Fix source URL.
+- Add BR vorbis-devel.
+- Use autoreconf (should suport better others arches).
+- Add license tag.
+- Change Licence from GPL to GPLv2.
+
 * Sat May 16 2015 Hans de Goede <j.w.r.degoede@gmail.com> - 0.70-9
 - Fix FTBFS (rf#3631)
 
