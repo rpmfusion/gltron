@@ -24,7 +24,7 @@ Patch27: gcc5.diff
 BuildRequires:  SDL_sound-devel libpng-devel zlib-devel libGLU-devel
 BuildRequires:  libvorbis-devel
 BuildRequires:  desktop-file-utils
-BuildRequires:  autoconf automake
+BuildRequires:  autoconf automake gcc
 
 %description
 %{summary}.
