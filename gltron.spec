@@ -1,6 +1,6 @@
 Name:           gltron
 Version:        0.70
-Release:        21%{?dist}
+Release:        22%{?dist}
 Summary:        A 3D game inspired by the movie TRON
 Group:          Amusements/Games
 License:        GPLv2
@@ -73,6 +73,10 @@ desktop-file-install --dir $RPM_BUILD_ROOT/%{_datadir}/applications %{SOURCE1}
 %{_datadir}/pixmaps/*.png
 
 %changelog
+* Sun Aug 07 2022 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 0.70-22
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild and ffmpeg
+  5.1
+
 * Wed Feb 09 2022 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 0.70-21
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_36_Mass_Rebuild
 
