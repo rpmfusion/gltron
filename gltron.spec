@@ -1,3 +1,5 @@
+%global build_type_safety_c 0
+
 Name:           gltron
 Version:        0.70
 Release:        24%{?dist}
@@ -75,6 +77,7 @@ desktop-file-install --dir $RPM_BUILD_ROOT/%{_datadir}/applications %{SOURCE1}
 %changelog
 * Sat Feb 03 2024 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 0.70-24
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_40_Mass_Rebuild
+- Disable type safety check, referenced in https://fedoraproject.org/wiki/Changes/PortingToModernC#Use_of_incompatible_pointer_types_without_a_cast
 
 * Wed Aug 02 2023 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 0.70-23
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_39_Mass_Rebuild
