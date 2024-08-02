@@ -34,16 +34,16 @@ BuildRequires:  autoconf automake gcc-c++
 
 %prep
 %setup -q
-%patch0 -p0 -b .gcc~
-%patch1 -p1
-%patch20 -p1
-%patch21 -p1
-%patch22 -p1
-%patch23 -p1
-%patch24 -p1
-%patch25 -p1
-%patch26 -p1
-%patch27 -p1
+%patch -P0 -p0 -b .gcc~
+%patch -P1 -p1
+%patch -P20 -p1
+%patch -P21 -p1
+%patch -P22 -p1
+%patch -P23 -p1
+%patch -P24 -p1
+%patch -P25 -p1
+%patch -P26 -p1
+%patch -P27 -p1
 
 # remove generated files
 rm aclocal.m4 config.guess config.sub configure depcomp install-sh missing \
