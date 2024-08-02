@@ -2,7 +2,7 @@
 
 Name:           gltron
 Version:        0.70
-Release:        24%{?dist}
+Release:        25%{?dist}
 Summary:        A 3D game inspired by the movie TRON
 Group:          Amusements/Games
 License:        GPLv2
@@ -75,6 +75,9 @@ desktop-file-install --dir $RPM_BUILD_ROOT/%{_datadir}/applications %{SOURCE1}
 %{_datadir}/pixmaps/*.png
 
 %changelog
+* Fri Aug 02 2024 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 0.70-25
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_41_Mass_Rebuild
+
 * Sat Feb 03 2024 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 0.70-24
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_40_Mass_Rebuild
 - Disable type safety check, referenced in https://fedoraproject.org/wiki/Changes/PortingToModernC#Use_of_incompatible_pointer_types_without_a_cast
